@@ -9,7 +9,8 @@
 			"reqs" : [],
 			"resources" : [],
 			"desc" : "",
-			"email" : ""
+			"email" : "",
+			"work" : ["Environment","Nature"]
 		},
 		{
 			"scale" : "1300",
@@ -20,7 +21,8 @@
 			"reqs" : [],
 			"resources" : [],
 			"desc" : "",
-			"email" : ""
+			"email" : "",
+			"work" : ["Animals","Pets"]
 		},
 		{
 			"scale" : "1350",
@@ -31,7 +33,8 @@
 			"reqs" : [],
 			"resources" : [],
 			"desc" : "",
-			"email" : ""
+			"email" : "",
+			"work" : ["Education","Schools"]
 		},
 		{
 			"scale" : "2100",
@@ -42,7 +45,8 @@
 			"reqs" : [],
 			"resources" : [],
 			"desc" : "",
-			"email" : ""
+			"email" : "",
+			"work" : ["Hygiene","Nutrition"]
 		},
 		{
 			"scale" : "765",
@@ -53,7 +57,8 @@
 			"reqs" : [],
 			"resources" : [],
 			"desc" : "",
-			"email" : ""
+			"email" : "",
+			"work" : ["Gender discrimination","Education"]
 		},
 		{
 			"scale" : "1570",
@@ -64,7 +69,8 @@
 			"reqs" : [],
 			"resources" : [],
 			"desc" : "",
-			"email" : ""
+			"email" : "",
+			"work" : ["Water","Nutrition"]
 		}
 	]
 }
