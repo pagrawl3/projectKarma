@@ -1,6 +1,36 @@
 include ./includes/header_files
 body
-	h1 Hello World
-	h3 Karma bitchezz
-	input#address(type='textbox', value='Sydney, NSW')
+	include ./includes/header
+	#map-canvas
+	//- input#address(type='textbox', value='Sydney, NSW')
+	br
+	section.splash
+		header.title
+			| Introducing <b> Karma </b>
+		span.subtitle
+			| A good subtitle here, maybe something long but not too long
+	hr
+	section.descrip-boxes
+		.wrapper
+			article.descrip-box
+				.icon.discover
+				br
+				span.title Discover
+				p.text
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, vitae, deserunt, eius iusto placeat eaque
+		.wrapper
+			article.descrip-box
+				.icon.connect
+				br
+				span.title Connect
+				p.text
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, vitae, deserunt, eius iusto placeat eaque
+		.wrapper
+			article.descrip-box
+				.icon.collaborate
+				br
+				span.title Collaborate
+				p.text
+					| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, vitae, deserunt, eius iusto placeat eaque
+	button.get-started Get Started
 	include ./includes/footer_files

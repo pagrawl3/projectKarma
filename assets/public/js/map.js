@@ -1,7 +1,7 @@
 function loadScript() {
   var script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDc4bUWerMbRWFK6oldh4vUBS2tiTyL5W8&sensor=true&callback=codeAddress";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDc4bUWerMbRWFK6oldh4vUBS2tiTyL5W8&sensor=true&callback=initialize";
   document.body.appendChild(script);
 }
 
@@ -12,7 +12,8 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-  google.maps.event.addDomListener(window, 'load', initialize);
+  // google.maps.event.addDomListener(window, 'load', initialize);
+  console.log('here');
 }
 
 function codeAddress() {
@@ -23,7 +24,6 @@ function codeAddress() {
       if (status == google.maps.GeocoderStatus.OK) {
         loc[0]=results[0].geometry.location.lat();
         loc[1]=results[0].geometry.location.lng();
-        
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
