@@ -183,3 +183,16 @@ exports.finishedEditing = function (io) {
 		socket.broadcast.emit('editingCompleted', {field : data.field, value : data.value})
 	}
 }
+
+exports.createNewTask = function (data, socket) {
+	initiativeModel.find({scale : data.scale}, function (err, docs) {
+		docs[0].tasks.push(data.task)
+		socket.emit('createNewTaskSuccessful', docs[0])
+	})
+}
+
+exports.createNewInitiative = function (data, socket) {
+	// var initSettings = {
+
+	// }
+}
