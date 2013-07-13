@@ -22,7 +22,7 @@ function initialize() {
   console.log("Calling initialize for maps")
   var mapOptions = {
     zoom: 3,
-    center: new google.maps.LatLng(25, 30),
+    center: new google.maps.LatLng(50, -45),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
