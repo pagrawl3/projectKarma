@@ -11,21 +11,67 @@ $(document).ready(function () {
 	});
 	loadScript();
 
-	$('.description').keypress(function(){
-		socket.emit('beingEdited', {field: 'description', value: $('.description').val()})
-	})
+	$('#desc').on('keyup', function(){
+		socket.emit('beingEdited', {field: '#desc', value: $('#desc').val()})
+	});
+
+	$('#name').on('keyup', function(){
+		socket.emit('beingEdited', {field: '#name', value: $('#name').val()})
+	});
+
+	$('#req').on('keyup', function(){
+		socket.emit('beingEdited', {field: '#req', value: $('#req').val()})
+	});
+
+	$('#deadline').on('change', function(){
+		socket.emit('beingEdited', {field: '#deadline', value: $('#deadline').val()})
+	});
+
 
 	$('.description').blur(function(){
 		socket.emit('finishedEditing', {field: 'description', value: $('.description').val()})
 	})
 
+	socket.emit('getTasks', {scale: 2120})
+
+	socket.on('getTasksSuccess', function (data) {
+		console.log(data.length);
+		var average = 500/data.length;
+		console.log(average);
+		$('ul.tasks').empty();
+		data.sort(function(a,b){
+ 		 a = new Date(a.deadline);
+ 		 b = new Date(b.deadline);
+  		return a<b?-1:a>b?1:0;
+		});
+		for (var j in data) {
+			var top = (average);
+			console.log("TOP " + top);
+			var myDate = new Date(Date.parse(data[j].deadline))
+			var tasks = "<li class='task' style='top: "+top+"px;'> <span class='date'>"+myDate.getDate() + '/' +  myDate.getMonth()+ '/' + myDate.getFullYear() + "</span> <span class='entypo-cd icon'></span> <span class='text'>"+data[j].name+"</span></li>";
+			
+			$('ul.tasks').append(tasks);
+		}
+	})
+
 	socket.on('greyOutField', function (data) {
-		$('.description').val(data.value)
+		console.log(data.field);
+		$(data.field).val(data.value)
+		$(data.field).text(data.value)
 	})
 
 	socket.on('editingCompleted', function (data) {
-
+		console.log("THIS IS DATA FIELD " + data.field);
+		// if(data.field[0] == '#') {
+			// data.field.text(data.value);
+			//$('#random').removeAttr('random');
+		// }
+		// else {
 		$('.description').val(data.value)
+	});
+
+	socket.on('blah', function (data) {
+		registerClick();
 	})
 
 	$('.get-started').click(function(){
@@ -61,17 +107,33 @@ $(document).ready(function () {
 
 });
 
+var provIndex =0;
+function registerClick() {
+	var val = $('#req').val();
+	$('.table .column.ten.status').append('<div class="row main entypo-check icon selected tick"></div>');
+	$('.table .column.forty.name').append('<div class="row main">'+val+'</div>');
+	$('.table .column.forty.providers').append('<div class="row main" id="prov'+provIndex+'"><em>none</em></div>');
+	$('.table .column.ten.actions').append('<div class="row main entypo-thumbs-up icon thumbs"></div>');
+	provIndex++;
+}	
+
 function initializeFormClickHandlers(socket) {
 	console.log('here');
 	$('span.entypo-plus-circled.icon').on('click', function(e) {
 		console.log('click registered');
-		var val = $('#req').val();
-		$('.table .column.ten.status').append('<div class="row main entypo-check icon selected tick"></div>');
-		$('.table .column.forty.name').append('<div class="row main">'+val+'</div>');
-		$('.table .column.forty.providers').append('<div class="row main"><em>none</em></div>');
-		$('.table .column.ten.actions').append('<div class="row main entypo-thumbs-up icon thumbs"></div>');
+		socket.emit('reqClicked', {success : true})
+		registerClick();
+		
 	});
-
+	$(document).on('click', '.thumbs', function(e) {
+		console.log("WE ARE GETTING CLICKED HEHE");
+		//$(this).parents('.table').find('.providers .main').attr('id', 'random');
+		$(this).parents('.table').find('.providers .main').text(sessionStorage.getItem("username"));
+		console.log($(this).parents('.table').find('.providers .main').attr('id'));
+		var id = '#'+$(this).parents('.table').find('.providers .main').attr('id');
+		socket.emit('beingEdited', {field : id, value : sessionStorage.getItem("username")})
+		//.val(sessionStorage.getItem("username"));
+	})
 	$("form.create-task").submit(function(e) {
         e.preventDefault();
         var obj = {}
@@ -91,6 +153,7 @@ function initializeFormClickHandlers(socket) {
         console.log(obj);
         socket.emit('createNewTask', {task : obj, scale: 2120});
         socket.on('createNewTaskSuccessful',function(data){
+        	socket.emit('getTasks', {scale : 2120});
         	console.log(data);
         });
         return false

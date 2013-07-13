@@ -27,5 +27,7 @@ module.exports = function(app, io) {
  	sock.get('beingEdited', main.beingEdited(io), io)
  	sock.get('finishedEditing', main.finishedEditing(io), io)
  	sock.get('createNewTask', main.createNewTask, io)
+ 	sock.get('reqClicked', main.reqClicked(io), io)
+ 	sock.get('getTasks', main.getTasks(io), io)
 }
 

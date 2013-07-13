@@ -163,6 +163,11 @@ exports.beingEdited = function (io) {
 	}
 }
 
+exports.reqClicked = function(io) {
+	return function(data, socket) {
+		socket.broadcast.emit('blah');
+	}
+}
 exports.finishedEditing = function (io) {
 	return function (data, socket) {
 		console.log(data.value)
@@ -182,4 +187,13 @@ exports.createNewInitiative = function (data, socket) {
 	// var initSettings = {
 
 	// }
+}
+
+exports.getTasks = function(io) {
+	return function (data, socket) {
+		console.log(data);
+		initiativeModel.find({scale : data.scale}, function (err, docs) {
+			io.sockets.emit('getTasksSuccess', docs[0].tasks)
+		})
+	}
 }
