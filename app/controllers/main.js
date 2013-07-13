@@ -17,6 +17,24 @@ exports.initiative = function(req, res) {
 		console.log(docs[0])
 		res.render('initiative', {data : docs[0]})
 	})
+
+	// var req_scale = req.params.id
+	// ngoModel.find({scale : req_scale}, function (err, docs) {
+	// 	console.log(docs[0])
+	// 	var collabs = []
+	// 	for (var i in docs[0].inits) {
+	// 		initiativeModel.find({name : docs[0].inits[i]}, function (err, docs2) {
+	// 			for (var j in docs2[0].ngos) {
+	// 				if (docs[0].name != docs2[0].ngos[j]) {
+	// 					collabs.push(docs2[0].ngos[j])
+	// 				}
+	// 			}
+	// 		})
+	// 	}
+	// 	docs[0]['collabs'] = collabs
+	// 	console.log(docs[0])
+	// 	res.render('initiative', {data : docs[0]})
+	// })
 }
 
 calcDistance = function (loc1, loc2) {

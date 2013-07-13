@@ -12,9 +12,6 @@ $(document).ready(function () {
 
 	loadScript();
 
-<<<<<<< Updated upstream
-	//socket.emit('createNgo', {})
-=======
 	$('.description').keypress(function(){
 		socket.emit('beingEdited', {field: 'description', value: $('.description').val()})
 	})
@@ -30,10 +27,9 @@ $(document).ready(function () {
 	socket.on('editingCompleted', function (data) {
 		$('.description').val(data.value)
 	})
-	 //socket.emit('createNgo', {})
->>>>>>> Stashed changes
+	// socket.emit('createNgo', {})
 
-	//socket.emit('createInit', {})
+	// socket.emit('createInit', {})
 
 	// socket.emit('searchByLocation', {loc : [37.61, 55.75], radius : 250000/3959})
 	// socket.on('locationSearchSuccess', function(data) {
