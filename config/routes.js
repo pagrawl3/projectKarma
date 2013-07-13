@@ -18,6 +18,7 @@ module.exports = function(app, io) {
  	}, io);
 
  	sock.get('createNgo', main.addNGO, io)
+ 	sock.get('createInit', main.addInit, io)
  	sock.get('searchByLocation', main.searchByLocation, io)
  	sock.get('searchByWork', main.searchByWork, io)
  	sock.get('searchByScale', main.searchByScale, io)

@@ -42,13 +42,15 @@ function codeLoc(place) {
   var thisloc=[];
   geocoder.geocode( { 'address': place}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        thisloc[0]=results[0].geometry.location.lat();
-        thisloc[1]=results[0].geometry.location.lng();
+        thisloc[1]=results[0].geometry.location.lat();
+        thisloc[0]=results[0].geometry.location.lng();
         var socket = io.connect('/');
-        socket.emit('searchByLocation', {loc : thisloc})
+        console.log(thisloc)
+        socket.emit('searchByLocation', {loc : thisloc, radius : 50000/3959})
         socket.on('locationSearchSuccess', function(data) {
               for (var i in data) {
-                console.log(i.type);
+                console.log(data);
+                // console.log(data[i].result.type);
               }
         })
        // main.searchByLocation(loc);
@@ -70,7 +72,8 @@ function codeWork(thisWork) {
 }
 
 function findType(typeVal) {
-
+  console.log('here');
+  console.log(typeVal);
   if(typeVal.type == "loc") {
       codeLoc(typeVal.value);
   }

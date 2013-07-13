@@ -72,5 +72,60 @@
 			"email" : "",
 			"work" : ["Water","Nutrition"]
 		}
+	],
+
+	"initiatives" : [
+	{
+		"name" : "Project Food",
+		"scale" : "1340",
+		"work" : ["Food","Nutrition"],
+		"desc" : "Bring food to people in rural Germany",
+		"coords" : [52.541285,13.411345],
+		"location" : "Germany",
+		"ngos" : [],
+		"tasks" : [
+			{
+				"desc" : "Gather packaged food",
+				"deadline" : "08-23-2013",
+				"progress" : 35,
+				"reqs" : [
+					{
+						"provider" : "The Wheat Helpers",
+						"amount" : "300 sandwiches"
+					},
+					{
+						"provider" : "Baskin Robins",
+						"amount" : "50 carts of ice cream"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name" : "Project Education",
+		"scale" : "2120",
+		"work" : ["Books","Education"],
+		"desc" : "Bring education to people in rural Australia",
+		"coords" : [78.224, 26.5],
+		"location" : "New Delhi",
+		"ngos" : [],
+		"tasks" : [
+			{
+				"desc" : "Gather books",
+				"deadline" : "09-22-2013",
+				"progress" : 55,
+				"reqs" : [
+					{
+						"provider" : "Central Board of Education, India",
+						"amount" : "Science books for 10,000 students"
+					},
+					{
+						"provider" : "Readers' Club",
+						"amount" : "5,000 novels"
+					}
+				]
+			}
+		]
+	}
 	]
 }
