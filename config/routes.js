@@ -16,5 +16,8 @@ module.exports = function(app, io) {
  		console.log(data);
  		socket.emit('testCallback', {success:true});
  	}, io);
+
+ 	sock.get('createNgo', main.addNGO, io)
+ 	sock.get('searchByLocation', main.searchByLocation, io)
 }
 
