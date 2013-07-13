@@ -12,7 +12,26 @@ $(document).ready(function () {
 
 	loadScript();
 
+<<<<<<< Updated upstream
 	//socket.emit('createNgo', {})
+=======
+	$('.description').keypress(function(){
+		socket.emit('beingEdited', {field: 'description', value: $('.description').val()})
+	})
+
+	$('.description').blur(function(){
+		socket.emit('finishedEditing', {field: 'description', value: $('.description').val()})
+	})
+
+	socket.on('greyOutField', function (data) {
+		$('.description').val(data.value)
+	})
+
+	socket.on('editingCompleted', function (data) {
+		$('.description').val(data.value)
+	})
+	 //socket.emit('createNgo', {})
+>>>>>>> Stashed changes
 
 	//socket.emit('createInit', {})
 
@@ -65,6 +84,7 @@ function initializeMapClickHandlers() {
 	});
 	var done = false;
 	$('button.submit').on('click', function(e){
+		$('section.search-results .results').empty();
 		if (!done) {
 			var leftO = ($('section.map-overlay').offset().left) - 50;
 			$('section.map-overlay').css('left', '-'+leftO + 'px');

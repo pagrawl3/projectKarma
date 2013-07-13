@@ -12,8 +12,9 @@ var initiativeSchema = new mongoose.Schema({
 	desc : String, 
 	coords : [Number, Number],
 	location : String,
-	ngos : [{type : mongoose.Schema.Types.ObjectId, ref: 'ngo'}],
+	ngos : [String],
 	tasks : [{
+		name : String,
 		desc : String,
 		deadline : Date,
 		progress : Number,

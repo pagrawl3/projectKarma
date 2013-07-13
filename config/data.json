@@ -145,7 +145,7 @@
 		"location" : "New Delhi",
 		"ngos" : [],
 		"tasks" : [
-			{
+			{	
 				"desc" : "Gather books",
 				"deadline" : "09-22-2013",
 				"progress" : 55,
