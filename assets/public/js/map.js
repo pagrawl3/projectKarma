@@ -1,12 +1,21 @@
 //var main = require('../../../app/controllers/main.js');
 var iconStar;
 var iconStarTwo;
+var infowindow;
+var markersArray = [];
 
 function loadScript() {
   var script = document.createElement("script");
   script.type = "text/javascript";
   script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDc4bUWerMbRWFK6oldh4vUBS2tiTyL5W8&sensor=true&callback=initialize";
   document.body.appendChild(script);
+}
+
+function clearOverlays() {
+  for (var i = 0; i < markersArray.length; i++ ) {
+    markersArray[i].setMap(null);
+  }
+  markersArray = [];
 }
 
 function initialize() {
@@ -28,6 +37,8 @@ function initialize() {
                  null,
                  new google.maps.Size(50, 50));
 
+  infowindow = new google.maps.InfoWindow();
+
    /*var pt = new google.maps.LatLng(-34.397, 150.644);
    var marker = new google.maps.Marker({
                 position: pt,
@@ -39,22 +50,32 @@ function initialize() {
   putAllMarkers();
 }
 
-function addMarker(coords, type) {
+function addMarker(coords, type, name) {
   var pt = new google.maps.LatLng(coords[1], coords[0]);
   var marker = new google.maps.Marker ({
     position: pt,
-    map: map
+    map: map,
+    title : name
 });
+  console.log(name);
+
   if(type == "ngo") {
   marker.setIcon(iconStar);
   }
   else {
     marker.setIcon(iconStarTwo);
   }
+  markersArray.push(marker);
+   google.maps.event.addListener(marker, 'click', function() {
+    var contentString = '<h3 style="font-family:lato;font-weight:300">' + name + '</h3';
+    infowindow.setContent(contentString);
+    infowindow.open(map,marker);
+  });
   console.log("Marker added");
 }
 
 function putAllMarkers() {
+  clearOverlays();
 var socket = io.connect('/');
 console.log("In putallmarksers");
 socket.emit('retrieveAll', {loc : 0})
@@ -62,7 +83,7 @@ socket.on('retrieveAllSuccess', function (data) {
   for (var i in data.result) {
     console.log(data.result[i].body.coords);
     console.log(data.result[i].type);
-    addMarker(data.result[i].body.coords, data.result[i].type)
+    addMarker(data.result[i].body.coords, data.result[i].type, data.result[i].body.name);
   }
 })
 }
@@ -77,8 +98,10 @@ function codeLoc(place, callback) {
         var socket = io.connect('/');
         console.log(thisloc)
         socket.emit('searchByLocation', {loc : thisloc, radius : 50000/3959})
-        socket.on('locationSearchSuccess', function (data) {
+        socket.on('locationSearchSuccess', function (data, callback) {
+              clearOverlays();
               for (var i in data.result) {
+                addMarker(data.result[i].body.coords, data.result[i].type, data.result[i].body.name);
                 console.log(data.result[i].type);
               }
               callback(data.result);
@@ -94,17 +117,25 @@ function codeLoc(place, callback) {
 function codeScale(thisScale, callback) {
   var socket = io.connect('/');
   socket.emit('searchByScale', {scale : thisScale})
-  socket.on('scaleSearchSuccess', function (data) {
-   console.log(data)
-   callback(data.result)
+  socket.on('scaleSearchSuccess', function (data, callback) {
+   clearOverlays();
+   for (var i in data.result) {
+      addMarker(data.result[i].body.coords, data.result[i].type, data.result[i].body.name);
+   }
+   console.log(data);
+   callback(data.result);
    })
 }
 
 function codeWork(thisWork, callback) {
   var socket = io.connect('/');
   socket.emit('searchByWork', {work : thisWork})
-  socket.on('workSearchSuccess', function (data){
-    console.log(data)
+  socket.on('workSearchSuccess', function (data, callback){
+    clearOverlays();
+    console.log(data);
+    for (var i in data.result) {
+    addMarker(data.result[i].body.coords, data.result[i].type, data.result[i].body.name);
+  }
     callback(data.result)
    })
 }
