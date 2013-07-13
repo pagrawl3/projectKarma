@@ -37,7 +37,7 @@ function initialize() {
   console.log('here');
 }
 
-function codeLoc(place) {
+function codeLoc(place, callback) {
 	var geocoder = new google.maps.Geocoder();
   var thisloc=[];
   geocoder.geocode( { 'address': place}, function(results, status) {
@@ -49,9 +49,9 @@ function codeLoc(place) {
         socket.emit('searchByLocation', {loc : thisloc, radius : 50000/3959})
         socket.on('locationSearchSuccess', function(data) {
               for (var i in data.result) {
-                // console.log(data);
                 console.log(data.result[i].type);
               }
+              callback(data.result);
         })
        // main.searchByLocation(loc);
       } else {
@@ -71,17 +71,17 @@ function codeWork(thisWork) {
   socket.emit('searchByWork', {work : thisWork})
 }
 
-function findType(typeVal) {
+function findType(typeVal, callback) {
   console.log('here');
   console.log(typeVal);
   if(typeVal.type == "loc") {
-      codeLoc(typeVal.value);
+      codeLoc(typeVal.value, callback);
   }
   else if(typeVal.type == "scale") {
-      codeScale(parseInt(typeVal.value));
+      codeScale(parseInt(typeVal.value), callback);
   }
   else {
-      codeWork(typeVal.value);
+      codeWork(typeVal.value, callback);
   }
 
 }
