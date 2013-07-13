@@ -1,15 +1,6 @@
 //var main = require('../../../app/controllers/main.js');
-var iconStar = new google.maps.MarkerImage("../img/icons/iconmonstr-location-16-icon.svg",
-                  null, 
-                  null,
-                 null,
-                 new google.maps.Size(50, 50));
-
-var iconStarTwo = new google.maps.MarkerImage("../img/icons/iconmonstr-location-17-icon.svg",
-                  null, 
-                  null,
-                 null,
-                 new google.maps.Size(50, 50));
+var iconStar;
+var iconStarTwo;
 
 function loadScript() {
   var script = document.createElement("script");
@@ -26,6 +17,16 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+  iconStar = new google.maps.MarkerImage("../img/icons/iconmonstr-location-16-icon.svg",
+                  null, 
+                  null,
+                 null,
+                 new google.maps.Size(50, 50));
+  iconStarTwo = new google.maps.MarkerImage("../img/icons/iconmonstr-location-17-icon.svg",
+                  null, 
+                  null,
+                 null,
+                 new google.maps.Size(50, 50));
 
    /*var pt = new google.maps.LatLng(-34.397, 150.644);
    var marker = new google.maps.Marker({
@@ -54,9 +55,13 @@ function addMarker(coords, type) {
 }
 
 function putAllMarkers() {
-socket.emit('retrieveAll', {})
+var socket = io.connect('/');
+console.log("In putallmarksers");
+socket.emit('retrieveAll', {loc : 0})
 socket.on('retrieveAllSuccess', function (data) {
   for (var i in data.result) {
+    console.log(data.result[i].body.coords);
+    console.log(data.result[i].type);
     addMarker(data.result[i].body.coords, data.result[i].type)
   }
 })

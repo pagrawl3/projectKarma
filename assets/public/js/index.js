@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 	loadScript();
 
-	// socket.emit('createNgo', {})
+	 //socket.emit('createNgo', {})
 
 	// socket.emit('createInit', {})
 
