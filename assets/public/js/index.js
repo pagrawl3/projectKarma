@@ -11,4 +11,6 @@ $(document).ready(function () {
 		console.log(data);
 	});
 
+	loadScript();
+
 });
