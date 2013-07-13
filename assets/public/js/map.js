@@ -1,3 +1,7 @@
+//var main = require('../../../app/controllers/main.js');
+
+var icons;
+
 function loadScript() {
   var script = document.createElement("script");
   script.type = "text/javascript";
@@ -8,27 +12,75 @@ function loadScript() {
 function initialize() {
   console.log("Calling initialize for maps")
   var mapOptions = {
-    zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644),
+    zoom: 3,
+    center: new google.maps.LatLng(25, 30),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+  var iconStar = new google.maps.MarkerImage("../img/icons/iconmonstr-location-16-icon.svg",
+                  null, 
+                  null,
+                 null,
+                 new google.maps.Size(50, 50));
+  var iconStarTwo = new google.maps.MarkerImage("../img/icons/iconmonstr-location-17-icon.svg",
+                  null, 
+                  null,
+                 null,
+                 new google.maps.Size(50, 50));
+   var pt = new google.maps.LatLng(-34.397, 150.644);
+   var marker = new google.maps.Marker({
+                position: pt,
+              // icon: "../img/icons/iconmonstr-location-16-icon.svg",
+                map: map
+            });
+   marker.setIcon(iconStarTwo);
   console.log('here');
 }
 
-function codeAddress() {
+function codeLoc(place) {
 	var geocoder = new google.maps.Geocoder();
-	var address = document.getElementById("address").value;
-    var loc=[];
-    geocoder.geocode( { 'address': address}, function(results, status) {
+  var thisloc=[];
+  geocoder.geocode( { 'address': place}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        loc[0]=results[0].geometry.location.lat();
-        loc[1]=results[0].geometry.location.lng();
+        thisloc[0]=results[0].geometry.location.lat();
+        thisloc[1]=results[0].geometry.location.lng();
+        var socket = io.connect('/');
+        socket.emit('searchByLocation', {loc : thisloc})
+        socket.on('locationSearchSuccess', function(data) {
+              for (var i in data) {
+                console.log(i.type);
+              }
+        })
+       // main.searchByLocation(loc);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
-      display(loc);
+     // display(loc);
     });
+}
+
+function codeScale(thisScale) {
+  var socket = io.connect('/');
+  socket.emit('searchByScale', {scale : thisScale})
+}
+
+function codeWork(thisWork) {
+  var socket = io.connect('/');
+  socket.emit('searchByWork', {work : thisWork})
+}
+
+function findType(typeVal) {
+
+  if(typeVal.type == "loc") {
+      codeLoc(typeVal.value);
+  }
+  else if(typeVal.type == "scale") {
+      codeScale(parseInt(typeVal.value));
+  }
+  else {
+      codeWork(typeVal.value);
+  }
+
 }
 
 function display(loc) {

@@ -33,7 +33,39 @@ exports.searchByLocation = function (data, socket) {
 	})
 }
 
-exports.searchByRequirement
+exports.searchByWork = function (data, socket) {
+	console.log('Inside searchByWork', data)
+	var results = []
+	ngoModel.find({}, function (err, docs) {
+		for (var i in docs) {
+			console.log(docs[i].work.toString())
+			var searchString = docs[i].work.toString().split(',').join(' ').toString()
+			if (searchString.indexOf(data.keyword) > -1) {
+				console.log(docs[i].name)
+				results.push(docs[i])
+			}
+		}
+		socket.emit('workSearchSuccess', {result : results})
+	})
+}
+
+exports.searchByScale = function (data, socket) {
+	console.log('Inside searchByScale')
+	console.log(data.scale)
+	var lower  = eval(data.scale) - 250,
+		upper  = eval(data.scale) + 250,
+		results = []
+	ngoModel.find({}, function (err, docs) {
+		for (var i in docs) {
+			console.log(docs[i].scale, lower, upper)
+			if (docs[i].scale > lower && docs[i].scale < upper) {
+				console.log(docs[i].name)
+				results.push(docs[i])
+			}
+		}
+		socket.emit('scaleSearchSuccess', {result : results})
+	})
+}
 
 exports.addNGO = function (data, socket) {
 	for (var i in fs.ngos){
