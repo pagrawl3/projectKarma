@@ -3,6 +3,24 @@ body
 	include ./includes/header
 	#map-canvas
 	//- input#address(type='textbox', value='Sydney, NSW')
+	section.map-overlay
+		header.title Search
+		button.location.selected.filter.text#loc location
+		button.scale.filter#scale scale
+		button.work.filter.text#work work
+		br
+		br
+		br
+		input.search(type="text", placeholder="search")
+		#scale-slider.scale-slider
+		span.scale-slider.number 0
+		br
+		br
+		br
+		button.submit Search
+		br
+		br
+		br
 	br
 	section.splash
 		header.title
