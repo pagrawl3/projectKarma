@@ -18,10 +18,7 @@ var initiativeSchema = new mongoose.Schema({
 		desc : String,
 		deadline : Date,
 		progress : Number,
-		reqs : [{
-			provider : String,
-			amount : String
-		}]
+		reqs : { desc : String , providers : [String]}
 	}]
 })
 
