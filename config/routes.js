@@ -25,5 +25,6 @@ module.exports = function(app, io) {
  	sock.get('retrieveAll', main.retrieveAll, io)
  	sock.get('beingEdited', main.beingEdited(io), io)
  	sock.get('finishedEditing', main.finishedEditing(io), io)
+ 	sock.get('createNewTask', main.createNewTask, io)
 }
 

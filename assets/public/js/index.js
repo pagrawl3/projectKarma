@@ -25,7 +25,18 @@ $(document).ready(function () {
 	})
 
 	socket.on('editingCompleted', function (data) {
+
 		$('.description').val(data.value)
+	})
+
+	$('.get-started').click(function(){
+		alert(sessionStorage.getItem("username"))
+	})
+	$('.login-button').click(function() {
+		var username = $('.username').val()
+		var password = $('.password').val()
+		sessionStorage.setItem("username",username)
+		sessionStorage.setItem("password",password)
 	})
 	// socket.emit('createNgo', {})
 
