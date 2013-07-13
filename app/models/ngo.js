@@ -11,6 +11,7 @@ var ngoSchema = new mongoose.Schema({
 	location : String,
 	name : String,
 	inits : [String],
+	collabs : [String],
 	reqs : [String],
 	resources : [String],
 	work : [String],
