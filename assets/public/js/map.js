@@ -48,9 +48,9 @@ function codeLoc(place) {
         console.log(thisloc)
         socket.emit('searchByLocation', {loc : thisloc, radius : 50000/3959})
         socket.on('locationSearchSuccess', function(data) {
-              for (var i in data) {
-                console.log(data);
-                // console.log(data[i].result.type);
+              for (var i in data.result) {
+                // console.log(data);
+                console.log(data.result[i].type);
               }
         })
        // main.searchByLocation(loc);
