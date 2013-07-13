@@ -13,12 +13,7 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-<<<<<<< HEAD
-  // google.maps.event.addDomListener(window, 'load', initialize);
   console.log('here');
-=======
-  //google.maps.event.addDomListener(window, 'load', initialize);
->>>>>>> b2fe270965019be56bd242a3a75ce75c0f1597e6
 }
 
 function codeAddress() {
