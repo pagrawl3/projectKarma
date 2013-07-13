@@ -1,3 +1,5 @@
+//var main = require('../../../app/controllers/main.js');
+
 function loadScript() {
   var script = document.createElement("script");
   script.type = "text/javascript";
@@ -16,19 +18,43 @@ function initialize() {
   console.log('here');
 }
 
-function codeAddress() {
+function codeLoc(place) {
 	var geocoder = new google.maps.Geocoder();
-	var address = document.getElementById("address").value;
-    var loc=[];
-    geocoder.geocode( { 'address': address}, function(results, status) {
+  var thisloc=[];
+  geocoder.geocode( { 'address': place}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        loc[0]=results[0].geometry.location.lat();
-        loc[1]=results[0].geometry.location.lng();
+        thisloc[0]=results[0].geometry.location.lat();
+        thisloc[1]=results[0].geometry.location.lng();
+        var socket = io.connect('/');
+        socket.emit('searchByLocation', {loc : thisloc})
+       // main.searchByLocation(loc);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
-      display(loc);
+     // display(loc);
     });
+}
+
+function codeScale(scale) {
+  
+}
+
+function codeWork(work) {
+  
+}
+
+function findType(typeVal) {
+
+  if(typeVal.type == "loc") {
+      codeLoc(typeVal.value);
+  }
+  else if(typeVal.type == "scale") {
+      codeScale(parseInt(typeVal.value));
+  }
+  else {
+      codeWork(typeVal.value);
+  }
+
 }
 
 function display(loc) {
