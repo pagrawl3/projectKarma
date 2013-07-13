@@ -23,7 +23,7 @@ exports.searchByLocation = function (data, socket) {
 			var dist = calcDistance(docs[i].coords, data.loc)
 			if ( dist < data.radius) {
 				console.log(docs[i].name)
-				results.push({ngo : docs[i], distance : dist)
+				results.push({ngo : docs[i], distance : dist})
 			}
 		}
 		results.sort(function(a,b){
