@@ -13,4 +13,12 @@ $(document).ready(function () {
 
 	loadScript();
 
+	
+	socket.emit('createNgo', {})
+
+	// socket.emit('searchByLocation', {loc : [37.61, 55.75], radius : 250000/3959})
+	// socket.on('locationSearchSuccess', function(data) {
+	// 	console.log(data)
+	// })
+
 });
