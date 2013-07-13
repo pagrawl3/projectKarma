@@ -12,9 +12,9 @@ $(document).ready(function () {
 
 	loadScript();
 
-	 //socket.emit('createNgo', {})
+	//socket.emit('createNgo', {})
 
-	// socket.emit('createInit', {})
+	//socket.emit('createInit', {})
 
 	// socket.emit('searchByLocation', {loc : [37.61, 55.75], radius : 250000/3959})
 	// socket.on('locationSearchSuccess', function(data) {
@@ -100,7 +100,7 @@ function initializeMapClickHandlers() {
 					$('section.search-results .results').append(node);
 				}
 				else {
-					var node = createNode(data[i].body.name, data[i].body.location, data[i].body.work, 'I');
+					var node = createNode(data[i].body.name, data[i].body.location, data[i].body.work, 'INIT');
 					$('section.search-results .results').append(node);
 				}
 			}

@@ -98,7 +98,7 @@ function codeLoc(place, callback) {
         var socket = io.connect('/');
         console.log(thisloc)
         socket.emit('searchByLocation', {loc : thisloc, radius : 50000/3959})
-        socket.on('locationSearchSuccess', function (data, callback) {
+        socket.on('locationSearchSuccess', function (data) {
               clearOverlays();
               for (var i in data.result) {
                 addMarker(data.result[i].body.coords, data.result[i].type, data.result[i].body.name);
@@ -117,7 +117,7 @@ function codeLoc(place, callback) {
 function codeScale(thisScale, callback) {
   var socket = io.connect('/');
   socket.emit('searchByScale', {scale : thisScale})
-  socket.on('scaleSearchSuccess', function (data, callback) {
+  socket.on('scaleSearchSuccess', function (data) {
    clearOverlays();
    for (var i in data.result) {
       addMarker(data.result[i].body.coords, data.result[i].type, data.result[i].body.name);
@@ -129,8 +129,8 @@ function codeScale(thisScale, callback) {
 
 function codeWork(thisWork, callback) {
   var socket = io.connect('/');
-  socket.emit('searchByWork', {work : thisWork})
-  socket.on('workSearchSuccess', function (data, callback){
+  socket.emit('searchByWork', {keyword : thisWork})
+  socket.on('workSearchSuccess', function (data){
     clearOverlays();
     console.log(data);
     for (var i in data.result) {
