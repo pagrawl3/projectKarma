@@ -3,34 +3,53 @@ body.colored
 	include ./includes/header
 	.wrapper
 		section.title-header
-			header.title #{data.name}
-			button.invite INVITE
+			header.title NAME
+			button.invite invite
+			ul.members
+				li.member blah
+				li.member blah
+				li.member blah
 			hr
 		section.left-panel.panel
 			article.left.pane
-				.item
-					header.title <span class="entypo-quote"></span> &nbsp Description
-					p.description #{data.desc}
-				.item
-					header.title <span class="entypo-target"></span> &nbspRequirements
-					ul
-						- each item in data.reqs
-							li #{item}
-				.item
-					header.title <span class="entypo-briefcase"></span> &nbsp Resources
-					ul
-						- each item in data.resources
-							li #{item}
+				h2 Timeline
+				.wrapper
+					section.vertical-bar
+						.progress
+					ul.tasks
+						li.task(style="top: 0px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
+						li.task(style="top: 30px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
+						li.task(style="top: 170px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
+						li.task(style="top: 300px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
 
 		section.right-panel.panel
 			article.right.pane
-				.item
-					header.title <span class="entypo-rocket"></span> &nbsp Initiatives
-					ul
-						- each item in data.inits
-							li #{item}
-				.item
-					header.title <span class="entypo-link"></span> &nbsp Collaborators
-					ul
-						- each item in data.collabs
-							li #{item}
+				h2 Tasks
+				form.create-task
+					h2 NAME
+					input#name(type="text", placeholder="Name")
+					br
+					h2 DESCRIPTION
+					textarea#desc(type="text", placeholder="Description")
+					br
+					h2 REQUIREMENTS
+					.table
+						.column.ten.status
+							.row.head 	Status
+							//- .row.main.entypo-check.icon.selected.tick
+						.column.forty.name
+							.row.head 	Name
+							//- .row.main	Item1
+						.column.forty.providers
+							.row.head 	Providers
+							//- .row.main	Item2
+						.column.ten.actions
+							.row.head 	Actions
+							//- .row.main.entypo-thumbs-up.icon.selected.thumbs
+					input#req(type="text", placeholder="Add a requirement")
+					span.entypo-plus-circled.icon
+					h2 DEADLINE
+					input#deadline(type="date")
+					br
+					button.submit Submit
+	include ./includes/footer_files

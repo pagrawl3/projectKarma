@@ -1,0 +1,36 @@
+include ./includes/header_files
+body.colored
+	include ./includes/header
+	.wrapper
+		section.title-header
+			header.title #{data.name}
+			button.invite INVITE
+			hr
+		section.left-panel.panel
+			article.left.pane
+				.item
+					header.title <span class="entypo-quote"></span> &nbsp Description
+					p.description #{data.desc}
+				.item
+					header.title <span class="entypo-target"></span> &nbspRequirements
+					ul
+						- each item in data.reqs
+							li #{item}
+				.item
+					header.title <span class="entypo-briefcase"></span> &nbsp Resources
+					ul
+						- each item in data.resources
+							li #{item}
+
+		section.right-panel.panel
+			article.right.pane
+				.item
+					header.title <span class="entypo-rocket"></span> &nbsp Initiatives
+					ul
+						- each item in data.inits
+							li #{item}
+				.item
+					header.title <span class="entypo-link"></span> &nbsp Collaborators
+					ul
+						- each item in data.collabs
+							li #{item}

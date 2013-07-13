@@ -82,7 +82,7 @@ button {
 	}
 }
 
-input {
+input, textarea {
 	display: inline-block;
 	outline: none;
 	border-style: none;
@@ -342,6 +342,11 @@ section.descrip-boxes {
 	}
 }
 
+h2 {
+	color: white;
+	padding: 20px;
+}
+
 body.colored {
 	background: #EA4F35;
 }
@@ -373,6 +378,24 @@ section.title-header {
 			background-color: #C0392B;
 		}
 	}
+	ul.members {
+		float: left;
+		list-style: none;
+		white-space: nowrap;
+		padding: 0;
+		margin: 0 auto;
+		margin-left: 30px;
+		li {
+			display: inline-block;
+			font-size: 1.3em;
+			font-weight: 300;
+			color: white;
+			// padding: 10px;
+			margin: 0 5px 0 5px;
+			padding: 8px 20px;
+			background-color: #C0392B;
+		}
+	}
 	hr {
 		clear: left;
 		float: left;
@@ -387,10 +410,13 @@ section.panel {
 	position: relative;
 	display: inline-block;
 	float: left;
-	width:50%;
+	width:30%;
 	height: 700px;
 	text-align: center;
 	top: -20px;
+	&.right-panel {
+		width: 70%;
+	}
 	article.pane {
 		display: inline-block;
 		margin: 10px;
@@ -421,8 +447,177 @@ section.panel {
 				}
 			}
 		}
+		.wrapper {
+			display: inline-block;
+			position: relative;
+			left: 40px;
+		}
+		section.vertical-bar {
+			text-align: left;
+			background-color: #2ECC71;
+			display: inline-block;
+			// float: left;
+			width: 30px;
+			height: 500px;
+			padding: 10px 0;
+			border-radius: 15px;
+			.progress {
+				height: 40%;
+				width: 16px;
+				margin: 0 7px;
+				background-color: #ED522B;
+				border-radius: 5px;
+			}
+		}
+		ul.tasks {
+			vertical-align: top;
+			display: inline-block;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			position: relative;
+			li {
+				cursor: pointer;
+				position: relative;
+				top: 30%;
+				// width: 150px;
+				font-size: 1.5em;
+				color: white;
+				font-weight: 400;
+				vertical-align: middle;
+				span.icon {
+					display: inline-block;
+					position: relative;
+					font-size: 44px;
+					left: 0px ;
+					margin-left: 10px;
+					-webkit-transition: 0.1s ease-out;
+					-moz-transition: 0.1s ease-out;
+					-ms-transition: 0.1s ease-out;
+					-o-transition: 0.1s ease-out;
+					transition: 0.1s ease-out;
+				}
+				span.text {
+					position: relative;
+					top: -6px;
+					margin-left: 10px;
+					font-size: 0.7em;
+				}
+				span.date {
+					position: relative;
+					top: -6px;
+					left: 0px;
+					margin-left: -143px;
+					font-size: 0.7em;
+				}
+				&:hover span.icon {
+					-webkit-transform: scale(1.2,1.2);
+					-moz-transform: scale(1.2,1.2);
+					-ms-transform: scale(1.2,1.2);
+					-o-transform: scale(1.2,1.2);
+					transform: scale(1.2,1.2);
+				}
+			}
+		}
 		&.left {
 			border-right: 1px solid rgba(255,255,255,0.2);
+		}
+
+		form {
+			display: inline-block;
+			border: 1px solid #FFF;
+			// border: 1px solid rgba();
+			margin: 30px;
+			margin-top: 0;
+			width: 80%;
+			padding: 30px;
+			position: relative;
+			input, textarea {
+				text-align: center;
+				padding: 2px 10px;
+				// margin: 20px;
+				background: transparent;
+				border: 1px solid transparent;
+				color: #FFF;
+				font-weight: 300;
+				font-size: 1.3em;
+				background: rgba(1,1,1,0.05);
+				width: 300px;
+				&:focus {
+					background: #C23C24;
+					border-color: #fff;
+				}
+				/* all */
+				&::-webkit-input-placeholder { color:#FFF; font-weight: 300; }
+				&::-moz-placeholder { color:#FFF; font-weight: 300; } /* firefox 19+ */
+				&:-ms-input-placeholder { color:#FFF; font-weight: 300; } /* ie */
+				&:-moz-placeholder { color:#FFF; font-weight: 300; }
+			}
+			textarea {
+				position: relative;
+				resize: none;
+				height: 120px;
+				width: 800px;
+				margin: 0;
+			}
+			h2 {
+				font-weight: 300;
+				margin: 0;
+				padding: 50px 0 10px 0;
+				&:first-child {
+					padding-top: 0px;
+				}
+			}
+			span.icon {
+				cursor: pointer;
+				color: #FFF;
+				display: inline-block;
+				font-size: 28px;
+				margin-left: 10px;
+			}
+			button.submit {
+				margin: 30px;
+			}
+
+			.table {
+				display: inline-block;
+				width: 800px;
+				font-weight: 400;
+				font-size: 1.1em;
+				margin: 10px;
+				.column {
+					display: inline-block;
+					&.ten {
+						width: 15%;
+						position: relative;
+						top: 1px;
+					}
+					&.forty {
+						width: 35%;
+					}
+					background: transparent;
+					.row {
+						color: white;
+						&.head {
+							background: rgba(1,1,1,0.3);
+						}
+						padding: 10px;
+						border: 1px solid rgba(1,1,1,0.1);
+						&.icon {
+							font-size: 24px;
+							line-height: 30px;
+							&.thumbs.selected ,&.tick.selected {
+								color: rgba(255,255,255,0.4);
+							}
+						}
+						&.main {
+							// font-size: 20px;
+							position: relative;
+							line-height: 20px;
+						}
+					}
+				}
+			}
 		}
 	}
 }

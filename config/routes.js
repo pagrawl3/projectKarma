@@ -6,7 +6,8 @@ module.exports = function(app, io) {
 	//__IMPORT ALL THE CONTROLLERS
 	var	main 			= require('../app/controllers/main')
 	//more can come here
-	app.get('/initiative/:id', main.initiative);
+	app.get('/initiative', main.initiative);
+	app.get('/ngo/:id', main.ngo);
  	//__FINALLY IF THERE IS NO KNOWN URL INCL. '/' THEN GO TO HOME
  	app.get('/*', main.landing);
 

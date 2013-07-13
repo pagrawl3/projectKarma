@@ -9,7 +9,6 @@ $(document).ready(function () {
 	socket.on('testCallback', function(data) {
 		console.log('client side test successful');
 	});
-
 	loadScript();
 
 	$('.description').keypress(function(){
@@ -57,9 +56,46 @@ $(document).ready(function () {
 	// 	console.log(data)
 	// })
 
+	initializeFormClickHandlers(socket)
 	initializeMapClickHandlers()
 
 });
+
+function initializeFormClickHandlers(socket) {
+	console.log('here');
+	$('span.entypo-plus-circled.icon').on('click', function(e) {
+		console.log('click registered');
+		var val = $('#req').val();
+		$('.table .column.ten.status').append('<div class="row main entypo-check icon selected tick"></div>');
+		$('.table .column.forty.name').append('<div class="row main">'+val+'</div>');
+		$('.table .column.forty.providers').append('<div class="row main"><em>none</em></div>');
+		$('.table .column.ten.actions').append('<div class="row main entypo-thumbs-up icon thumbs"></div>');
+	});
+
+	$("form.create-task").submit(function(e) {
+        e.preventDefault();
+        var obj = {}
+        obj.name = $('form.create-task #name').val();
+        obj.desc = $('form.create-task #desc').val();
+        obj.req = [];
+       	var req = {};
+        $('form.create-task .table .column.forty.name .row.main').each(function(i, e){
+        	console.log(i);
+        	req.name = $(e).text();
+        	obj.req.push (req);
+        });
+        $('form.create-task .table .column.forty.providers .row.main').each(function(i, e){
+        	obj.req[i].providers = [$(e).text()];
+        });
+        obj.deadline = $('form.create-task #deadline').val();
+        console.log(obj);
+        socket.emit('createNewTask', {task : obj, scale: 2120});
+        socket.on('createNewTaskSuccessful',function(data){
+        	console.log(data);
+        });
+        return false
+    });
+}
 
 function initializeMapClickHandlers() {
 	var prev = 0;
@@ -107,7 +143,7 @@ function initializeMapClickHandlers() {
 		findType(data, function(data){
 
 			function createNode(name, location, work, type, scale) {
-				return	'<a href="/initiative/'+scale+'"><article class="result '+type+'">'+
+				return	'<a href="/ngo/'+scale+'"><article class="result '+type+'">'+
 							'<div class="result-logo">'+type+'</div>'+
 							'<header class="result-title">'+
 								name+

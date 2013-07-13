@@ -10,31 +10,17 @@ exports.landing = function(req, res) {
 	res.render('landing');
 }
 
-exports.initiative = function(req, res) {
+exports.ngo = function(req, res) {
 	//find all the files linked to that user and pass them on to the template
 	var req_scale = req.params.id
 	ngoModel.find({scale : req_scale}, function (err, docs) {
 		console.log(docs[0])
-		res.render('initiative', {data : docs[0]})
-	})
+		res.render('ngo', {data : docs[0]})
+	});
+}
 
-	// var req_scale = req.params.id
-	// ngoModel.find({scale : req_scale}, function (err, docs) {
-	// 	console.log(docs[0])
-	// 	var collabs = []
-	// 	for (var i in docs[0].inits) {
-	// 		initiativeModel.find({name : docs[0].inits[i]}, function (err, docs2) {
-	// 			for (var j in docs2[0].ngos) {
-	// 				if (docs[0].name != docs2[0].ngos[j]) {
-	// 					collabs.push(docs2[0].ngos[j])
-	// 				}
-	// 			}
-	// 		})
-	// 	}
-	// 	docs[0]['collabs'] = collabs
-	// 	console.log(docs[0])
-	// 	res.render('initiative', {data : docs[0]})
-	// })
+exports.initiative = function(req, res) {
+	res.render('initiative');
 }
 
 calcDistance = function (loc1, loc2) {
@@ -187,6 +173,7 @@ exports.finishedEditing = function (io) {
 exports.createNewTask = function (data, socket) {
 	initiativeModel.find({scale : data.scale}, function (err, docs) {
 		docs[0].tasks.push(data.task)
+		docs[0].save();
 		socket.emit('createNewTaskSuccessful', docs[0])
 	})
 }
