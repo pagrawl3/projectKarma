@@ -77,6 +77,70 @@ function initializeMapClickHandlers() {
 		else
 			data.value = $('span.scale-slider').text();
 		console.log(data);
-		findType(data);
+		findType(data, function(data){
+
+			function createNode(name, location, work, type) {
+				return	'<article class="result '+type+'">'+
+							'<div class="result-logo">'+type+'</div>'+
+							'<header class="result-title">'+
+								name+
+							'</header>'+
+							'<span class="string">'+
+								'<span class="entypo-location"></span> &nbsp'+
+								location + ' &nbsp; &nbsp;'+
+								'<span class="entypo-flag"></span>'+
+								work.toString()+
+							'</span>'+
+						'</article>';
+			}
+			for (var i in data) {
+				console.log(data[i])
+				if (data[i].type == 'ngo') {
+					var node = createNode(data[i].body.name, data[i].body.location, data[i].body.work, 'NGO');
+					$('section.search-results .results').append(node);
+				}
+				else {
+					var node = createNode(data[i].body.name, data[i].body.location, data[i].body.work, 'I');
+					$('section.search-results .results').append(node);
+				}
+			}
+			console.log(data);
+
+
+			$('section.search-results').css('display', 'block');
+			$('#search-title').css('display', 'inline-block');
+			window.setTimeout(function(){
+				$('section.search-results').css('padding', '30px');
+				$('section.search-results').css('margin', '20px 0');
+				$('section.search-results').css('height', 'auto');
+			}, 200);
+			window.setTimeout(function(){
+				$('section.search-results').css('opacity', '1');
+				$('#search-title').css('opacity', '1');
+			}, 400);
+		});
 	});
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

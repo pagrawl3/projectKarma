@@ -1,5 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
 html {
 	font-family: 'Lato', sans-serif !important;
 	font-weight: 100;
@@ -149,6 +156,80 @@ span.number {
 	clear: both;
 	height: 350px;
 	margin: 0;
+}
+
+header#search-title {
+	font-size: unit(32px/16px, em);
+	font-weight: 300;
+	position: relative;
+	margin-top: 10px;
+	opacity: 0;
+	display: none;
+}
+section.search-results {
+	display: none;
+	opacity: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background: #eee;
+	overflow-x: scroll;
+	// width: 100%;
+	white-space: nowrap;
+	-webkit-transition: 0.2s ease-out;
+	-moz-transition: 0.2s ease-out;
+	-ms-transition: 0.2s ease-out;
+	-o-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+	.results {
+		position: relative;
+		// top: -30px;
+		// overflow: hidden;
+		article.result {
+			position: relative;
+			width: 30%;
+			min-width: 400px;
+			padding: 30px;
+			margin: 10px;
+			display: inline-block;
+			// background-color: #eee;
+			&.I {
+				background-color: #3498DB;
+			}
+			&.NGO {
+				background-color: #E74C3C;
+			}
+			// float: left;
+			header.result-title {
+				font-size: unit(28px/16px, em);
+				font-weight: 300;
+				padding: 10px 0 5px 0;
+				color: white;
+			}
+			&:last-child {
+				margin-right: 30px;
+			}
+			span.string {
+				color: #FFF;
+				font-size: 1.3em;
+				font-weight: 400;
+			}
+			.result-logo {
+				width: 64px;
+				height: 64px;
+				margin: 10px;
+				color: white;
+				float: left;
+				font-weight: 300;
+				font-size: 1.2em;
+				border-radius: 32px;
+				border: 3px solid #FFF;
+				line-height: 64px;
+				font-weight: 700;
+
+			}
+		}
+	}
 }
 
 section.map-overlay {

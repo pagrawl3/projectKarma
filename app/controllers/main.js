@@ -14,6 +14,18 @@ calcDistance = function (loc1, loc2) {
 	return Math.sqrt(((loc1[0] - loc2[0])*(loc1[0] - loc2[0])) + ((loc1[1] - loc2[1])*(loc1[1] - loc2[1])))
 }
 
+exports.getAllNgos = function (data, socket) {
+	ngoModel.find({}, function (err, docs) {
+		socket.emit('getAllNgosSuccess', {result : docs})
+	})
+}
+
+exports.getAllInitiatives = function (data, socket) {
+	initiativeModel.find({}, function (err, docs) {
+		socket.emit('getAllInitiativesSuccess', {result : docs})
+	})
+}
+
 exports.retrieveAll = function (data, socket) {
 	var results = []
 	ngoModel.find({}, function (err, docs) {
@@ -118,6 +130,7 @@ exports.addNGO = function (data, socket) {
 
 exports.addInit = function (data, socket) {
 	for (var i in fs.initiatives){
+		console.log(fs.initiatives[i].work)
 		var init = new initiativeModel(fs.initiatives[i])
 		init.save()
 	}

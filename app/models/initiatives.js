@@ -6,7 +6,9 @@ var mongoose 		= require('mongoose')
 //File Schema
 var initiativeSchema = new mongoose.Schema({
 	//schema here
-	name : String, 
+	name : String,
+	scale : Number,
+	work : [String], 
 	desc : String, 
 	coords : [Number, Number],
 	location : String,
