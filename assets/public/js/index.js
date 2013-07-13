@@ -8,7 +8,6 @@ $(document).ready(function () {
 	socket.emit('test',{success: true});
 	socket.on('testCallback', function(data) {
 		console.log('client side test successful');
-		console.log(data);
 	});
 
 	loadScript();

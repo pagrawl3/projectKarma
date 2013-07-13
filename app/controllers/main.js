@@ -33,6 +33,8 @@ exports.searchByLocation = function (data, socket) {
 	})
 }
 
+exports.searchByRequirement
+
 exports.addNGO = function (data, socket) {
 	for (var i in fs.ngos){
 		var ngo = new ngoModel(fs.ngos[i])
