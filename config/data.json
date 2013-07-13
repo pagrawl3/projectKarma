@@ -27,7 +27,7 @@
 		{
 			"scale" : "1350",
 			"coords" : [-122.236, 37.48],
-			"location" : "Red Wood City, California",
+			"location" : "Redwood City, California",
 			"name" : "Environmental Health Network",
 			"inits" : [],
 			"reqs" : [],
@@ -61,7 +61,43 @@
 			"work" : ["Gender discrimination","Education"]
 		},
 		{
-			"scale" : "1570",
+			"scale" : "990",
+			"coords" : [78.486, 17.38],
+			"location" : "Hyderabad, India",
+			"name" : "Pratham",
+			"inits" : ["Project Leap"],
+			"reqs" : ["Cheap food contracts", "Expertise in Medicine and Healthcare", "Toys and small gifts for kids", "Outreach to other cities"],
+			"resources" : ["Expertise in curriculum design for unprivileged students", "Teachers", "Textbooks, notebooks and stationary", "A team of 990 dedicated individuals"],
+			"desc" : "The organization Pratham, is based in Hyderabad India, and we work towards alleviating illeteracy and providing for quality education to the underprivileged sections of the society.",
+			"email" : "mail@pratham.org",
+			"work" : ["Education"]
+		},
+		{
+			"scale" : "700",
+			"coords" : [79.588, 18.000555],
+			"location" : "Warangal, India",
+			"name" : "Sanskriti",
+			"inits" : ["Project Udaan"],
+			"reqs" : ["Teachers", "Textbooks", "Cheap stationary material"],
+			"resources": ["Mobile dispensaries", "Toys for kids", "Subsidized food rates from local providers"],
+			"desc" : "The organization Sanskriti, is based in Warangal India, and works on hygiene, healthcare and nutrition issues with children within the area. Currently, they are looking for co-operation in the education space.",
+			"email" : "mail@pratham.org",
+			"work" : ["Nutrition", "Health"]
+		},
+		{
+			"scale" : "800",
+			"coords" : [31.053961000000072, -17.82922],
+			"location" : "Harare, Zimbabwe",
+			"name" : "Revolt against Animal Cruelty",
+			"inits" : ["Project Save Animals"],
+			"reqs" : ["International collaboration and support", "Global Upheaval against recent killings"],
+			"resources": ["Tremendous support in the area"],
+			"desc" : "The organization Revolt against Animal Cruelty, is based in Harare Zimbawe, and works on animal cruelty issues. They want to start a global movement against animal cruelty with the support of NGOs around the world.",
+			"email" : "mail@pratham.org",
+			"work" : ["Animals"]
+		},
+		{
+			"scale" : "1400",
 			"coords" : [37.61, 55.75],
 			"location" : "Moscow, Russia",
 			"name" : "Project Coyote",
@@ -127,5 +163,6 @@
 		],
 		"work" : ["Books","Education"]
 	}
-	]
+	],
+
 }

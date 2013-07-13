@@ -3,10 +3,10 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-<path id="location-16-icon_1_" fill="#001BBC" d="M256,50c-62.694,0-113.52,50.824-113.52,113.521
+<path id="location-16-icon_1_" fill="#3498DB" d="M256,50c-62.694,0-113.52,50.824-113.52,113.521
 	c0,62.693,49.682,135.556,113.52,244.869c63.837-109.312,113.52-182.176,113.52-244.869C369.52,100.824,318.695,50,256,50z
 	 M256,201.476c-22.484,0-40.711-18.228-40.711-40.712c0-22.48,18.227-40.708,40.711-40.708c22.484,0,40.711,18.228,40.711,40.708
 	C296.711,183.248,278.484,201.476,256,201.476z"/>
-<ellipse fill="#001BBC" cx="258.5" cy="164" rx="53" ry="60.5"/>
+<ellipse fill="#3498DB" cx="258.5" cy="164" rx="53" ry="60.5"/>
 <text transform="matrix(1 0 0 1 195.5 245.5)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="219">n</text>
 </svg>
