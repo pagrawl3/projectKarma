@@ -13,6 +13,7 @@ var ngoSchema = new mongoose.Schema({
 	inits : [{type : mongoose.Schema.Types.ObjectId, ref: 'initiatives'}],
 	reqs : [String],
 	resources : [String],
+	work : [String],
 	desc : String,
 	email : String
 })

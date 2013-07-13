@@ -15,9 +15,19 @@ $(document).ready(function () {
 	
 	// socket.emit('createNgo', {})
 
-	socket.emit('searchByLocation', {loc : [37.61, 55.75], radius : 250000/3959})
-	socket.on('locationSearchSuccess', function(data) {
-		console.log(data)
-	})
+	// socket.emit('searchByLocation', {loc : [37.61, 55.75], radius : 250000/3959})
+	// socket.on('locationSearchSuccess', function(data) {
+	// 	console.log(data)
+	// })
+
+	// socket.emit('searchByWork', {keyword : "Nutrition"})
+	// socket.on('workSearchSuccess', function(data){
+	// 	console.log(data)
+	// })
+
+	// socket.emit('searchByScale', {scale : '1234'})
+	// socket.on('scaleSearchSuccess', function (data) {
+	// 	console.log(data)
+	// })
 
 });
