@@ -1,6 +1,15 @@
 //var main = require('../../../app/controllers/main.js');
+var iconStar = new google.maps.MarkerImage("../img/icons/iconmonstr-location-16-icon.svg",
+                  null, 
+                  null,
+                 null,
+                 new google.maps.Size(50, 50));
 
-var icons;
+var iconStarTwo = new google.maps.MarkerImage("../img/icons/iconmonstr-location-17-icon.svg",
+                  null, 
+                  null,
+                 null,
+                 new google.maps.Size(50, 50));
 
 function loadScript() {
   var script = document.createElement("script");
@@ -17,24 +26,40 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-  var iconStar = new google.maps.MarkerImage("../img/icons/iconmonstr-location-16-icon.svg",
-                  null, 
-                  null,
-                 null,
-                 new google.maps.Size(50, 50));
-  var iconStarTwo = new google.maps.MarkerImage("../img/icons/iconmonstr-location-17-icon.svg",
-                  null, 
-                  null,
-                 null,
-                 new google.maps.Size(50, 50));
-   var pt = new google.maps.LatLng(-34.397, 150.644);
+
+   /*var pt = new google.maps.LatLng(-34.397, 150.644);
    var marker = new google.maps.Marker({
                 position: pt,
               // icon: "../img/icons/iconmonstr-location-16-icon.svg",
                 map: map
             });
-   marker.setIcon(iconStarTwo);
-  console.log('here');
+   marker.setIcon(iconStarTwo);*/
+  console.log('Initialized Google Maps API');
+  putAllMarkers();
+}
+
+function addMarker(coords, type) {
+  var pt = new google.maps.LatLng(coords[1], coords[0]);
+  var marker = new google.maps.Marker ({
+    position: pt,
+    map: map
+});
+  if(type == "ngo") {
+  marker.setIcon(iconStar);
+  }
+  else {
+    marker.setIcon(iconStarTwo);
+  }
+  console.log("Marker added");
+}
+
+function putAllMarkers() {
+socket.emit('retrieveAll', {})
+socket.on('retrieveAllSuccess', function (data) {
+  for (var i in data.result) {
+    addMarker(data.result[i].body.coords, data.result[i].type)
+  }
+})
 }
 
 function codeLoc(place, callback) {
@@ -47,7 +72,7 @@ function codeLoc(place, callback) {
         var socket = io.connect('/');
         console.log(thisloc)
         socket.emit('searchByLocation', {loc : thisloc, radius : 50000/3959})
-        socket.on('locationSearchSuccess', function(data) {
+        socket.on('locationSearchSuccess', function (data) {
               for (var i in data.result) {
                 console.log(data.result[i].type);
               }
@@ -61,14 +86,22 @@ function codeLoc(place, callback) {
     });
 }
 
-function codeScale(thisScale) {
+function codeScale(thisScale, callback) {
   var socket = io.connect('/');
   socket.emit('searchByScale', {scale : thisScale})
+  socket.on('scaleSearchSuccess', function (data) {
+   console.log(data)
+   callback(data.result)
+   })
 }
 
-function codeWork(thisWork) {
+function codeWork(thisWork, callback) {
   var socket = io.connect('/');
   socket.emit('searchByWork', {work : thisWork})
+  socket.on('workSearchSuccess', function (data){
+    console.log(data)
+    callback(data.result)
+   })
 }
 
 function findType(typeVal, callback) {
