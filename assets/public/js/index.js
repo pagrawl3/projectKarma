@@ -65,6 +65,7 @@ function initializeMapClickHandlers() {
 	});
 	var done = false;
 	$('button.submit').on('click', function(e){
+		$('section.search-results .results').empty();
 		if (!done) {
 			var leftO = ($('section.map-overlay').offset().left) - 50;
 			$('section.map-overlay').css('left', '-'+leftO + 'px');

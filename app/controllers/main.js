@@ -10,6 +10,11 @@ exports.landing = function(req, res) {
 	res.render('landing');
 }
 
+exports.initiative = function(req, res) {
+	//find all the files linked to that user and pass them on to the template
+	res.render('initiative');
+}
+
 calcDistance = function (loc1, loc2) {
 	return Math.sqrt(((loc1[0] - loc2[0])*(loc1[0] - loc2[0])) + ((loc1[1] - loc2[1])*(loc1[1] - loc2[1])))
 }
