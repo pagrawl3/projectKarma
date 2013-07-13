@@ -1,7 +1,9 @@
 //#######__MODULE DEPENDENCIES__#########
 var mongoose 	= require('mongoose'),
 	ngoModel	= mongoose.model('ngo'),
-	initiativeModel = mongoose.model('initiatives')
+	initiativeModel = mongoose.model('initiatives'),
+	fs = require('../../config/data.json')
+	// mock_data = JSON.parse(fs)
 
 exports.landing = function(req, res) {
 	//find all the files linked to that user and pass them on to the template
@@ -18,17 +20,23 @@ exports.searchByLocation = function (data, socket) {
 	var results = []
 	ngoModel.find({}, function (err, docs) {
 		for (var i in docs) {
-			if (calcDistance(docs[i].coords, data.loc) < data.radius) {
+			var dist = calcDistance(docs[i].coords, data.loc)
+			if ( dist < data.radius) {
 				console.log(docs[i].name)
+				results.push({ngo : docs[i], distance : dist)
 			}
 		}
+		results.sort(function(a,b){
+			return a.distance - b.distance
+		})
+		socket.emit('locationSearchSuccess', {result : results})
 	})
 }
 
 exports.addNGO = function (data, socket) {
-	console.log(data)
-	for (var i in data){
-		var ngo = new ngoModel(data[i])
+	for (var i in fs.ngos){
+		var ngo = new ngoModel(fs.ngos[i])
 		ngo.save()
 	}
+	console.log('NGO objects saved')
 }
