@@ -10,7 +10,7 @@ var ngoSchema = new mongoose.Schema({
 	coords : [Number, Number],
 	location : String,
 	name : String,
-	inits : [{type : mongoose.Schema.Types.ObjectId, ref: 'initiatives'}],
+	inits : [String],
 	reqs : [String],
 	resources : [String],
 	work : [String],

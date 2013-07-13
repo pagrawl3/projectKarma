@@ -12,7 +12,11 @@ exports.landing = function(req, res) {
 
 exports.initiative = function(req, res) {
 	//find all the files linked to that user and pass them on to the template
-	res.render('initiative');
+	var req_scale = req.params.id
+	ngoModel.find({scale : req_scale}, function (err, docs) {
+		console.log(docs[0])
+		res.render('initiative', {data : docs[0]})
+	})
 }
 
 calcDistance = function (loc1, loc2) {
@@ -140,4 +144,24 @@ exports.addInit = function (data, socket) {
 		init.save()
 	}
 	console.log('Init objects saved')
+}
+
+exports.getNgoData = function (data, socket) {
+	ngoModel.find({name : data.name}, function (err, docs) {
+		socket.emit('getNgoDataSuccess', docs[0])
+	})
+}
+
+exports.beingEdited = function (io) {
+	return function (data, socket) {
+		console.log(data.value)
+		socket.broadcast.emit('greyOutField', {field : data.field, value : data.value})
+	}
+}
+
+exports.finishedEditing = function (io) {
+	return function (data, socket) {
+		console.log(data.value)
+		socket.broadcast.emit('editingCompleted', {field : data.field, value : data.value})
+	}
 }
