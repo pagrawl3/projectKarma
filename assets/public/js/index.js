@@ -49,7 +49,6 @@ $(document).ready(function () {
 			console.log("TOP " + top);
 			var myDate = new Date(Date.parse(data[j].deadline))
 			var tasks = "<li class='task' style='top: "+top+"px;'> <span class='date'>"+myDate.getDate() + '/' +  myDate.getMonth()+ '/' + myDate.getFullYear() + "</span> <span class='entypo-cd icon'></span> <span class='text'>"+data[j].name+"</span></li>";
-			
 			$('ul.tasks').append(tasks);
 		}
 	})
@@ -82,6 +81,12 @@ $(document).ready(function () {
 		var password = $('.password').val()
 		sessionStorage.setItem("username",username)
 		sessionStorage.setItem("password",password)
+		$('nav.header-nav').css('opacity', '0');
+		$('nav.header-create').css('display', 'inline-block');
+		window.setTimeout(function(){
+			$('nav.header-nav').css('display', 'none');
+			$('nav.header-create').css('opacity', '1');
+		}, 200);
 	})
 	// socket.emit('createNgo', {})
 
@@ -105,9 +110,20 @@ $(document).ready(function () {
 	initializeFormClickHandlers(socket)
 	initializeMapClickHandlers()
 
+	functionForLogin()
+
 });
 
 var provIndex =0;
+
+function functionForLogin() {
+	if (sessionStorage.getItem('username')) {
+		$('nav.header-nav').css('display', 'none');
+		$('nav.header-create').css('opacity', '1');
+		$('nav.header-create').css('display', 'inline-block');
+	}
+}
+
 function registerClick() {
 	var val = $('#req').val();
 	$('.table .column.ten.status').append('<div class="row main entypo-check icon selected tick"></div>');
@@ -115,7 +131,7 @@ function registerClick() {
 	$('.table .column.forty.providers').append('<div class="row main" id="prov'+provIndex+'"><em>none</em></div>');
 	$('.table .column.ten.actions').append('<div class="row main entypo-thumbs-up icon thumbs"></div>');
 	provIndex++;
-}	
+}
 
 function initializeFormClickHandlers(socket) {
 	console.log('here');
@@ -123,7 +139,6 @@ function initializeFormClickHandlers(socket) {
 		console.log('click registered');
 		socket.emit('reqClicked', {success : true})
 		registerClick();
-		
 	});
 	$(document).on('click', '.thumbs', function(e) {
 		console.log("WE ARE GETTING CLICKED HEHE");

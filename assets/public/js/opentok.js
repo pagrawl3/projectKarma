@@ -11,7 +11,7 @@ session.addEventListener('sessionConnected', sessionConnectedHandler);
 session.addEventListener('streamCreated', streamCreatedHandler);
 session.connect(apiKey, token);
 function sessionConnectedHandler(event) {
-  var publisher = TB.initPublisher(apiKey, 'myPublisherDiv');
+  var publisher = TB.initPublisher(apiKey, 'me');
   session.publish(publisher);
 
   // Subscribe to streams that were in the session when we connected
@@ -33,8 +33,10 @@ function subscribeToStreams(streams) {
     // Create the div to put the subscriber element in to
     var div = document.createElement('div');
     div.setAttribute('id', 'stream' + streams[i].streamId);
-    document.body.appendChild(div);
-
+    $(document).ready(function(){
+      console.log('hello')
+      $('section.chat').append(div);
+    });
     // Subscribe to the stream
     session.subscribe(streams[i], div.id);
   }

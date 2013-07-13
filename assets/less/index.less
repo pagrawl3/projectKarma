@@ -21,6 +21,9 @@ html {
 
 		@media (max-width: 1280px) {
 			font-size: 90%
+			.wrapper {
+				width: 100% !important;
+			}
 		}
 	}
 }
@@ -36,7 +39,26 @@ nav.header-nav {
 	float: right;
 	padding: 5px 20px;
 	height: 64px;
+	opacity: 1;
+	-webkit-transition: 0.2s ease-out;
+	-moz-transition: 0.2s ease-out;
+	-ms-transition: 0.2s ease-out;
+	-o-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
 }
+
+nav.header-create {
+	position: absolute;
+	display: none;
+	opacity: 0;
+	right: 20px;
+	top: 10px;
+	// float: right;
+	button {
+		margin: 10px;
+	}
+}
+
 button {
 	position: relative;
 	display: inline-block;
@@ -457,14 +479,14 @@ section.panel {
 			background-color: #2ECC71;
 			display: inline-block;
 			// float: left;
-			width: 30px;
+			width: 20px;
 			height: 500px;
 			padding: 10px 0;
 			border-radius: 15px;
 			.progress {
 				height: 40%;
-				width: 16px;
-				margin: 0 7px;
+				width: 13px;
+				margin: 0 4px;
 				background-color: #ED522B;
 				border-radius: 5px;
 			}
@@ -557,7 +579,7 @@ section.panel {
 				position: relative;
 				resize: none;
 				height: 120px;
-				width: 800px;
+				width: 90%;
 				margin: 0;
 			}
 			h2 {
@@ -581,7 +603,7 @@ section.panel {
 
 			.table {
 				display: inline-block;
-				width: 800px;
+				width: 90%;
 				font-weight: 400;
 				font-size: 1.1em;
 				margin: 10px;
@@ -621,3 +643,13 @@ section.panel {
 		}
 	}
 }
+ section.chat {
+ 	position: absolute;
+ 	left: 10%;
+ 	top: 30%;
+ 	padding: 30px;
+ 	// height: 60px;
+ 	// width: 60px;
+ 	background: rgba(1,1,1,0.4);
+ 	overflow: hidden
+ }

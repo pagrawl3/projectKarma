@@ -1,5 +1,6 @@
 include ./includes/header_files
 body.colored
+	script(src='/js/opentok.js')
 	include ./includes/header
 	.wrapper
 		section.title-header
@@ -52,4 +53,6 @@ body.colored
 					input#deadline(type="date")
 					br
 					button.submit Submit
+		section.chat
+			#me
 	include ./includes/footer_files
