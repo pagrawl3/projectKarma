@@ -14,6 +14,21 @@ calcDistance = function (loc1, loc2) {
 	return Math.sqrt(((loc1[0] - loc2[0])*(loc1[0] - loc2[0])) + ((loc1[1] - loc2[1])*(loc1[1] - loc2[1])))
 }
 
+exports.retrieveAll = function (data, socket) {
+	var results = []
+	ngoModel.find({}, function (err, docs) {
+		for ( var i in docs) {
+			results.push({body : docs[i], type : 'ngo'})
+		}
+		initiativeModel.find({}, function (err, docs2) {
+			for ( var i in docs2 ) {
+				results.push({body : docs2[i], type : 'initiative'})
+			}
+			socket.emit('retrieveAllSuccess', {result : results})
+		})
+	})
+}
+
 exports.searchByLocation = function (data, socket) {
 	console.log('Inside searchByLocation')
 	console.log(data.loc, data.radius)
