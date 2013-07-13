@@ -15,6 +15,8 @@ $(document).ready(function () {
 	
 	// socket.emit('createNgo', {})
 
+	// socket.emit('createInit', {})
+
 	// socket.emit('searchByLocation', {loc : [37.61, 55.75], radius : 250000/3959})
 	// socket.on('locationSearchSuccess', function(data) {
 	// 	console.log(data)
@@ -30,4 +32,4 @@ $(document).ready(function () {
 	// 	console.log(data)
 	// })
 
-});
+}); 

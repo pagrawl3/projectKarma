@@ -23,13 +23,22 @@ exports.searchByLocation = function (data, socket) {
 			var dist = calcDistance(docs[i].coords, data.loc)
 			if ( dist < data.radius) {
 				console.log(docs[i].name)
-				results.push({ngo : docs[i], distance : dist})
+				results.push({body : docs[i], type : 'ngo'})
 			}
 		}
-		results.sort(function(a,b){
-			return a.distance - b.distance
+		initiativeModel.find({}, function (err, docs2) {
+			for (var i in docs2) {
+				var dist = calcDistance(docs2[i].coords, data.loc)
+				if ( dist < data.radius) {
+					console.log(docs2[i].name)
+					results.push({body : docs2[i], type : 'initiative'})
+				}
+			}
+			results.sort(function(a,b){
+				return a.distance - b.distance
+			})
+			socket.emit('locationSearchSuccess', {result : results})
 		})
-		socket.emit('locationSearchSuccess', {result : results})
 	})
 }
 
@@ -42,10 +51,20 @@ exports.searchByWork = function (data, socket) {
 			var searchString = docs[i].work.toString().split(',').join(' ').toString()
 			if (searchString.indexOf(data.keyword) > -1) {
 				console.log(docs[i].name)
-				results.push(docs[i])
+				results.push({body : docs[i], type : 'ngo'})
 			}
 		}
-		socket.emit('workSearchSuccess', {result : results})
+		initiativeModel.find({}, function (err, docs2) {
+			console.log(docs2)
+			for (var i in docs2) {
+				searchString = docs2[i].work.toString().split(',').join(' ').toString()
+				if (searchString.indexOf(data.keyword) > -1) {
+					console.log(docs2[i].name)
+					results.push({body : docs2[i], type : 'initiative'})
+				}
+			}
+			socket.emit('workSearchSuccess', {result : results})
+		})
 	})
 }
 
@@ -57,13 +76,20 @@ exports.searchByScale = function (data, socket) {
 		results = []
 	ngoModel.find({}, function (err, docs) {
 		for (var i in docs) {
-			console.log(docs[i].scale, lower, upper)
 			if (docs[i].scale > lower && docs[i].scale < upper) {
 				console.log(docs[i].name)
-				results.push(docs[i])
+				results.push({body : docs[i], type : 'ngo'})
 			}
 		}
-		socket.emit('scaleSearchSuccess', {result : results})
+		initiativeModel.find({}, function (err, docs2) {
+			for (var i in docs2) {
+				if (docs2[i].scale > lower && docs2[i].scale < upper) {
+					console.log(docs2[i].name)
+					results.push({body : docs2[i], type : 'initiative'})
+				}
+			}
+			socket.emit('scaleSearchSuccess', {result : results})
+		})
 	})
 }
 
@@ -73,4 +99,12 @@ exports.addNGO = function (data, socket) {
 		ngo.save()
 	}
 	console.log('NGO objects saved')
+}
+
+exports.addInit = function (data, socket) {
+	for (var i in fs.initiatives){
+		var init = new initiativeModel(fs.initiatives[i])
+		init.save()
+	}
+	console.log('Init objects saved')
 }
