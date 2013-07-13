@@ -78,9 +78,8 @@
 	{
 		"name" : "Project Food",
 		"scale" : "1340",
-		"work" : ["Food","Nutrition"],
 		"desc" : "Bring food to people in rural Germany",
-		"coords" : [52.541285,13.411345],
+		"coords" : [10.411345, 51.165125],
 		"location" : "Germany",
 		"ngos" : [],
 		"tasks" : [
@@ -99,13 +98,13 @@
 					}
 				]
 			}
-		]
+		],
+		"work" : ["Food","Nutrition"]
 	},
 	{
 		"name" : "Project Education",
 		"scale" : "2120",
-		"work" : ["Books","Education"],
-		"desc" : "Bring education to people in rural Australia",
+		"desc" : "Bring education to people in rural India",
 		"coords" : [78.224, 26.5],
 		"location" : "New Delhi",
 		"ngos" : [],
@@ -125,7 +124,8 @@
 					}
 				]
 			}
-		]
+		],
+		"work" : ["Books","Education"]
 	}
 	]
 }

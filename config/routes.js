@@ -22,5 +22,6 @@ module.exports = function(app, io) {
  	sock.get('searchByLocation', main.searchByLocation, io)
  	sock.get('searchByWork', main.searchByWork, io)
  	sock.get('searchByScale', main.searchByScale, io)
+ 	sock.get('retrieveAll', main.retrieveAll, io)
 }
 
