@@ -184,16 +184,32 @@ exports.createNewTask = function (data, socket) {
 }
 
 exports.createNewInitiative = function (data, socket) {
-	// var initSettings = {
+	var initSettings = {
+		name : data.name,
+		scale : data.scale,
+		work : [data.work],
+		desc : data.desc,
+		coords : data.coords,
+		location : data.location,
+		ngos : [data.current_ngo],
+		tasks : []
+	}
 
-	// }
+	var newInit = new initiativeModel(initSettings)
+	newInit.save()
+	socket.emit('newInitSuccessful')
+}
+
+exports.clientSendingInvite = function (data, socket) {
+	console.log('clientSendingInvite')
+	socket.broadcast.emit('invitationBeingBroadcast', {name : data.name})
 }
 
 exports.getTasks = function(io) {
 	return function (data, socket) {
-		console.log(data);
-		initiativeModel.find({scale : data.scale}, function (err, docs) {
-			io.sockets.emit('getTasksSuccess', docs[0].tasks)
-		})
+		// console.log(data);
+		// initiativeModel.find({scale : data.scale}, function (err, docs) {
+		// 	io.sockets.emit('getTasksSuccess', docs[0].tasks)
+		// })
 	}
 }

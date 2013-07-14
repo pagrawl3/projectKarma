@@ -27,6 +27,34 @@ $(document).ready(function () {
 		socket.emit('beingEdited', {field: '#deadline', value: $('#deadline').val()})
 	});
 
+	$('.invite').on('click', function(){
+		var a  = prompt('Enter NGO name')
+		socket.emit('clientSendingInvitation', {name : a})
+	})
+
+	$('#modal-submit').on('click', function(){
+		findLocation($('#modal-location').val(), function(data) {
+			var initSettings = {
+				name : $('#modal-name').val(),
+				scale : $('#modal-scale').val(),
+				work : $('#modal-work').val(),
+				coords : data
+				desc : $('#modal-desc').val(),
+				location : $('#modal-location').val(),
+				current_ngo : sessionStorage.getItem('username')
+			}
+			socket.emit('createNewInitiative', initSettings)
+		})	
+	})
+
+	socket.on('invitationBeingBroadcast', function(data) {
+		if (data.name === sessionStorage.getItem('username'))
+			alert('You have been invited to an initiative')
+	})
+
+	socket.on('newInitSuccessful', function(){
+		console.log('new initiative was successfully created')
+	})
 
 	$('.description').blur(function(){
 		socket.emit('finishedEditing', {field: 'description', value: $('.description').val()})

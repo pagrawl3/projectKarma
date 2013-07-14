@@ -11,7 +11,6 @@ module.exports = function(app, io) {
  	//__FINALLY IF THERE IS NO KNOWN URL INCL. '/' THEN GO TO HOME
  	app.get('/*', main.landing);
 
- 	//socket get function
  	sock.get('test', function(data, socket) {
  		console.log('message on server received');
  		console.log(data);
@@ -27,6 +26,8 @@ module.exports = function(app, io) {
  	sock.get('beingEdited', main.beingEdited(io), io)
  	sock.get('finishedEditing', main.finishedEditing(io), io)
  	sock.get('createNewTask', main.createNewTask, io)
+ 	sock.get('createNewInitiative', main.createNewInitiative, io)
+ 	sock.get('clientSendingInvitation', main.clientSendingInvite, io)
  	sock.get('reqClicked', main.reqClicked(io), io)
  	sock.get('getTasks', main.getTasks(io), io)
 }
