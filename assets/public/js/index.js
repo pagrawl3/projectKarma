@@ -139,8 +139,48 @@ $(document).ready(function () {
 	initializeMapClickHandlers()
 
 	functionForLogin()
+	initializeModal()
+
+	$('button.initiative').on('click', function(e){
+		showModal();
+	});
+
+	$('span.close.icon').on('click', function(e){
+		hideModal();
+	});
+
+	function showModal() {
+		$('section.modal').css('display', 'block');
+		$('section.overlay').css('display', 'block');
+		window.setTimeout(function(){
+			$('section.modal').css({
+				'marginTop' : '0px',
+				'opacity'	: '1'
+			})
+			$('section.overlay').css('opacity', '1');
+		}, 50);
+	}
+
+	function hideModal() {
+		$('section.modal').css({
+			'marginTop' : '-20px',
+			'opacity'	: '0'
+		})
+		$('section.overlay').css('opacity', '0');
+		window.setTimeout(function(){
+			$('section.modal').css('display', 'none');
+			$('section.overlay').css('display', 'none');
+		}, 50);
+	}
 
 });
+
+function initializeModal() {
+	$('section.modal').css({
+		'left' : $(window).width()/2 - $('section.modal').width()/2,
+		'top' : $(window).height()/2 - $('section.modal').height()/2
+	});
+}
 
 var provIndex =0;
 

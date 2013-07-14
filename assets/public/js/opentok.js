@@ -1,6 +1,6 @@
 var apiKey = "35089512";
-var sessionId = "1_MX4zNTA4OTUxMn4xMjcuMC4wLjF-U2F0IEp1bCAxMyAxMTo1MDoxNCBQRFQgMjAxM34wLjA1NTgwNjE2fg";
-var token = "T1==cGFydG5lcl9pZD0zNTA4OTUxMiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz04Y2NjYWNkYWRhNTNmOGYwZjc5M2ZiMzAxZDE1OWVlN2FhM2VhZmNkOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDR6TlRBNE9UVXhNbjR4TWpjdU1DNHdMakYtVTJGMElFcDFiQ0F4TXlBeE1UbzFNRG94TkNCUVJGUWdNakF4TTM0d0xqQTFOVGd3TmpFMmZnJmNyZWF0ZV90aW1lPTEzNzM3NDE0MTcmbm9uY2U9MC42NjM3NTExNTQ3ODI4Nzc1JmV4cGlyZV90aW1lPTEzNzM4Mjc4MTcmY29ubmVjdGlvbl9kYXRhPQ==";
+var sessionId = "1_MX4zNTA4OTUxMn4xMjcuMC4wLjF-U2F0IEp1bCAxMyAxNjoyOTo0NSBQRFQgMjAxM34wLjU0NzQ2Mzd-";
+var token = "T1==cGFydG5lcl9pZD0zNTA4OTUxMiZzZGtfdmVyc2lvbj10YnJ1YnktdGJyYi12MC45MS4yMDExLTAyLTE3JnNpZz1hYjJkYzE2YzE1N2M1OTQ4MmNhYmRmM2JmMTVlYjgzODNiNmFiMTZlOnJvbGU9cHVibGlzaGVyJnNlc3Npb25faWQ9MV9NWDR6TlRBNE9UVXhNbjR4TWpjdU1DNHdMakYtVTJGMElFcDFiQ0F4TXlBeE5qb3lPVG8wTlNCUVJGUWdNakF4TTM0d0xqVTBOelEyTXpkLSZjcmVhdGVfdGltZT0xMzczNzU4MTk5Jm5vbmNlPTAuMDI0MjYyMTkxNjU1MzYwMDMzJmV4cGlyZV90aW1lPTEzNzM4NDQ1OTkmY29ubmVjdGlvbl9kYXRhPQ==";
 
 // Enable console logs for debugging
 TB.setLogLevel(TB.DEBUG);
@@ -35,7 +35,7 @@ function subscribeToStreams(streams) {
     div.setAttribute('id', 'stream' + streams[i].streamId);
     $(document).ready(function(){
       console.log('hello')
-      $('section.chat').append(div);
+      $('section.chat').prepend(div);
     });
     // Subscribe to the stream
     session.subscribe(streams[i], div.id);
