@@ -20,10 +20,18 @@ html {
 		text-align: center;
 
 		@media (max-width: 1280px) {
-			font-size: 90%
 			.wrapper {
 				width: 100% !important;
 			}
+			section.chat {
+				left: 0 !important;
+			}
+			-webkit-transform: scale(0.7,0.7);
+			-moz-transform: scale(0.7,0.7);
+			-ms-transform: scale(0.7,0.7);
+			-o-transform: scale(0.7,0.7);
+			transform: scale(0.7,0.7);
+			font-size: 90%
 		}
 	}
 }
@@ -431,13 +439,18 @@ section.title-header {
 section.panel {
 	position: relative;
 	display: inline-block;
-	float: left;
-	width:30%;
+	// float: right;
+	width:20%;
 	height: 700px;
 	text-align: center;
 	top: -20px;
 	&.right-panel {
 		width: 70%;
+	}
+	&.left-panel {
+		position: absolute;
+		top: 50%;
+		margin-top: -250px;
 	}
 	article.pane {
 		display: inline-block;
@@ -499,6 +512,7 @@ section.panel {
 			margin: 0;
 			position: relative;
 			li {
+				text-align: left !important;
 				cursor: pointer;
 				position: relative;
 				top: 30%;
@@ -511,8 +525,6 @@ section.panel {
 					display: inline-block;
 					position: relative;
 					font-size: 44px;
-					left: 0px ;
-					margin-left: 10px;
 					-webkit-transition: 0.1s ease-out;
 					-moz-transition: 0.1s ease-out;
 					-ms-transition: 0.1s ease-out;
@@ -522,15 +534,15 @@ section.panel {
 				span.text {
 					position: relative;
 					top: -6px;
-					margin-left: 10px;
 					font-size: 0.7em;
 				}
 				span.date {
+					display: inline-block;
 					position: relative;
 					top: -6px;
-					left: 0px;
-					margin-left: -143px;
 					font-size: 0.7em;
+					min-width: 100px;
+					margin-left: -134px;
 				}
 				&:hover span.icon {
 					-webkit-transform: scale(1.2,1.2);
@@ -643,9 +655,50 @@ section.panel {
 		}
 	}
 }
- section.chat {
+
+section.modal {
+	// margin-top: -20px;
+	position: absolute;
+	top: 0;
+	width: 60%;
+	height: 40%;
+	background-color: #FFF;
+	z-index: 3000;
+	opacity: 0;
+	display: none;
+	-webkit-transition: 0.2s ease-out;
+	-moz-transition: 0.2s ease-out;
+	-ms-transition: 0.2s ease-out;
+	-o-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+	span.close.icon {
+		position: absolute;
+		top: 13px;
+		left: 20px;
+		font-size: 32px;
+		cursor: pointer;
+	}
+}
+
+section.overlay {
+	opacity: 0;
+	display: none;
+	background: rgba(1,1,1,0.7);
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	right: 0;
+	z-index: 2999;
+	-webkit-transition: 0.2s ease-out;
+	-moz-transition: 0.2s ease-out;
+	-ms-transition: 0.2s ease-out;
+	-o-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+}
+section.chat {
  	position: absolute;
- 	left: 10%;
+ 	left: 5%;
  	top: 30%;
  	padding: 30px;
  	// height: 60px;

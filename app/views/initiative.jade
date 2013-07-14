@@ -11,17 +11,6 @@ body.colored
 				li.member blah
 				li.member blah
 			hr
-		section.left-panel.panel
-			article.left.pane
-				h2 Timeline
-				.wrapper
-					section.vertical-bar
-						.progress
-					ul.tasks
-						//- li.task(style="top: 0px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
-						//- li.task(style="top: 30px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
-						//- li.task(style="top: 170px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
-						//- li.task(style="top: 300px;") <span class='date'>06/13/2013</span> <span class='entypo-cd icon'></span> <span class="text">Task 1</span>
 
 		section.right-panel.panel
 			article.right.pane
@@ -53,6 +42,17 @@ body.colored
 					input#deadline(type="date")
 					br
 					button.submit Submit
+		section.left-panel.panel
+			article.left.pane
+				h2 Timeline
+				.wrapper
+					section.vertical-bar
+						.progress
+					ul.tasks
 		section.chat
 			#me
+			//- br
+			//- br
+			//- button.showChat CHAT
+			//- button.hideChat TIMELINE
 	include ./includes/footer_files
