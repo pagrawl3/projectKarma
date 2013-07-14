@@ -88,6 +88,22 @@ socket.on('retrieveAllSuccess', function (data) {
 })
 }
 
+
+function findLocation(place, callback) {
+  var geocoder = new google.maps.Geocoder();
+  var thisloc=[];
+  geocoder.geocode( {'address': place}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        thisloc[1]=results[0].geometry.location.lat();
+        thisloc[0]=results[0].geometry.location.lng();
+        callback(thisloc);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+}
+
+
 function codeLoc(place, callback) {
 	var geocoder = new google.maps.Geocoder();
   var thisloc=[];
